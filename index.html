@@ -1,0 +1,266 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-title" content="Eudaimonia">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#FAFAF7">
+<meta name="robots" content="noindex, nofollow">
+<title>Eudaimonia Day Card</title>
+<style>
+  /* Committed light-only: dark grounds hurt Myra's eyes, so the page paints
+     its own background and never follows the host theme. */
+  :root {
+    --paper:  #FAFAF7;
+    --card:   #FFFFFF;
+    --ink:    #1A1C1A;
+    --muted:  #6B6F6A;
+    --faint:  #9A9E98;
+    --line:   #E6E6E0;
+    --accent: #3D6B4F;
+    --wash:   #EDF2EE;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--paper); -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--sans); font-size: 16px; line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 520px; margin: 0 auto;
+    padding: 28px 20px calc(44px + env(safe-area-inset-bottom));
+    display: flex; flex-direction: column; gap: 30px;
+  }
+
+  .masthead { display: flex; flex-direction: column; gap: 2px; }
+  .masthead h1 {
+    margin: 0; font-size: 15px; font-weight: 700; letter-spacing: -.01em;
+  }
+  .masthead p { margin: 0; font-size: 13px; color: var(--faint); }
+
+  h2 {
+    margin: 0 0 10px; font-size: 11px; font-weight: 700;
+    letter-spacing: .13em; text-transform: uppercase; color: var(--faint);
+  }
+
+  /* Today ---------------------------------------------------------- */
+  .today {
+    background: var(--card); border: 1px solid var(--line);
+    border-left: 3px solid var(--accent); padding: 18px 18px 16px;
+  }
+  .today .day {
+    margin: 0 0 1px; font-size: 27px; font-weight: 700; letter-spacing: -.02em;
+    line-height: 1.1;
+  }
+  .today .mins {
+    margin: 0 0 12px; font-size: 12px; font-weight: 600; letter-spacing: .09em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  .today .task { margin: 0; font-size: 17px; line-height: 1.5; }
+  .today .task b { font-weight: 700; }
+  .today .extra {
+    margin: 11px 0 0; padding-top: 11px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--muted);
+  }
+
+  /* Week ----------------------------------------------------------- */
+  .week { display: flex; flex-direction: column; }
+  .week .row {
+    display: grid; grid-template-columns: 42px 1fr auto; gap: 10px;
+    align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--line);
+    font-size: 14.5px;
+  }
+  .week .row:last-child { border-bottom: 0; }
+  .week .dy { font-weight: 700; }
+  .week .tm {
+    font-size: 12.5px; color: var(--faint); white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .week .row.now { background: var(--wash); margin: 0 -10px; padding: 9px 10px; }
+  .week .row.now .dy, .week .row.now .tm { color: var(--accent); }
+
+  /* Parts ---------------------------------------------------------- */
+  .parts { display: flex; flex-direction: column; gap: 12px; }
+  .part { display: flex; flex-direction: column; gap: 1px; }
+  .part .nm { font-size: 15.5px; font-weight: 700; }
+  .part .gl { font-size: 14px; color: var(--muted); }
+
+  /* Apps ----------------------------------------------------------- */
+  .apps { display: flex; flex-direction: column; gap: 8px; }
+  a.app {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--card); border: 1px solid var(--line);
+    padding: 13px 15px;
+  }
+  a.app .nm { font-size: 15.5px; font-weight: 650; }
+  a.app .gl { font-size: 13.5px; color: var(--muted); margin-top: 1px; }
+  a.app:active { background: var(--wash); }
+  a.app:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* Boxes ---------------------------------------------------------- */
+  .rule { border: 1.5px solid var(--ink); padding: 15px 16px; }
+  .rule .lead { margin: 0 0 6px; font-size: 17px; font-weight: 700; }
+  .rule p { margin: 0 0 6px; font-size: 14.5px; }
+  .rule p:last-child { margin: 0; }
+
+  .mac { font-size: 14px; color: var(--muted); }
+  .mac .r {
+    display: grid; grid-template-columns: 1fr; gap: 1px;
+    padding: 8px 0; border-bottom: 1px solid var(--line);
+  }
+  .mac .r:last-child { border-bottom: 0; }
+  .mac .r b { color: var(--ink); font-weight: 650; font-size: 14.5px; }
+  .mac .r span { font-size: 13px; color: var(--faint); }
+
+  footer {
+    font-size: 13px; color: var(--faint);
+    padding-top: 18px; border-top: 1px solid var(--line);
+  }
+  footer b { color: var(--muted); display: block; margin-bottom: 3px; }
+</style>
+
+<div class="wrap">
+
+  <div class="masthead">
+    <h1>Eudaimonia</h1>
+    <p>Social connectedness through arts and making</p>
+  </div>
+
+  <section class="today" id="today">
+    <p class="day" id="t-day">Today</p>
+    <p class="mins" id="t-mins"></p>
+    <p class="task" id="t-task"></p>
+    <p class="extra" id="t-extra"></p>
+  </section>
+
+  <section>
+    <h2>The week</h2>
+    <div class="week" id="week"></div>
+  </section>
+
+  <section>
+    <h2>The five parts of a video</h2>
+    <div class="parts">
+      <div class="part">
+        <span class="nm">The claim</span>
+        <span class="gl">What you are arguing. Written first, never said out loud.</span>
+      </div>
+      <div class="part">
+        <span class="nm">The hook</span>
+        <span class="gl">The first three seconds. A strange thing to look at, and a line that does not follow from it.</span>
+      </div>
+      <div class="part">
+        <span class="nm">What it is</span>
+        <span class="gl">Teach something real and checkable. Twenty to thirty seconds.</span>
+      </div>
+      <div class="part">
+        <span class="nm">So what</span>
+        <span class="gl">Your story, and the bit underneath you would rather not say. Your words only — nobody writes this one for you.</span>
+      </div>
+      <div class="part">
+        <span class="nm">Over to you</span>
+        <span class="gl">One small thing tonight, the dispute line, then the sign-off.</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The claim test</h2>
+    <div class="rule">
+      <p class="lead">Could a sensible person argue with this out loud?</p>
+      <p>If nobody could, it is not a claim. It is a fact or a feeling, and the
+      video will have no spine. Put it back in the vault.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Open on this phone</h2>
+    <div class="apps">
+      <a class="app" href="start-here.epub">
+        <div class="nm">Start Here</div>
+        <div class="gl">The handbook, 21 chapters. Downloads, then Copy to Books.</div>
+      </a>
+      <a class="app" href="print.html">
+        <div class="nm">The one page</div>
+        <div class="gl">The A4 sheet, for printing from the Mac.</div>
+      </a>
+      <a class="app" href="https://claude.ai/code/artifact/ea34b6ba-4fd1-41b2-8e9a-170e8d43fb28">
+        <div class="nm">The Idea Room</div>
+        <div class="gl">Six gates per topic. The one app on your own account.</div>
+      </a>
+    </div>
+    <p style="margin:12px 0 0;font-size:13.5px;color:var(--faint);">
+      Theme to Upload, The Binge-Worthy Board, Fifty Scripts and Hours to Upload
+      live on Amar&rsquo;s Claude account, so they will not open for you. You do
+      not need any of them to run the week.
+    </p>
+  </section>
+
+  <section>
+    <h2>If the week falls apart</h2>
+    <div class="rule">
+      <p class="lead">One video a week is a complete week.</p>
+      <p>There are no streaks. Nothing accumulates. You do not owe next week
+      anything.</p>
+      <p><b>The floor:</b> one Strange Things I Learnt. No props, no set, no
+      shoot day, nobody else. You and a table, ninety seconds.</p>
+      <p><b>And:</b> make that one video <i>before</i> you are allowed to
+      improve the system. Rebuilding is avoidance that feels like work.</p>
+      <p>What you shoot Wednesday goes out <i>next</i> week. You are always a
+      week ahead, so nothing is ever due today.</p>
+    </div>
+  </section>
+
+  <footer>
+    <b>Keep this on your Home Screen</b>
+    Share, then Add to Home Screen. This page holds the shape of the week —
+    the four claims change weekly and arrive on Telegram at 10am, so nothing
+    here goes stale.
+  </footer>
+
+</div>
+
+<script>
+  const DAYS = [
+    { k:'sun', name:'Sunday',    mins:'',            task:'Off.',
+      extra:'The week ahead lands on Telegram at 7pm.' },
+    { k:'mon', name:'Monday',    mins:'10 minutes',  task:'Post. Then read the four claims and swap any you hate.',
+      extra:'Do not open the vault. The four in front of you are good enough.' },
+    { k:'tue', name:'Tuesday',   mins:'15 minutes',  task:'Post. Then four voice notes — your <b>so what</b> for each video.',
+      extra:'Ninety seconds each. Do not listen back, do not polish. The walk to pilates is long enough for four.' },
+    { k:'wed', name:'Wednesday', mins:'90 minutes',  task:'<b>Shoot day.</b> Shoot four. Do not edit them.',
+      extra:'Tripod at eye level, window on your face, props left to right. Two takes maximum, stumbles stay in. Editing is tomorrow. Gym after 4.' },
+    { k:'thu', name:'Thursday',  mins:'60 minutes',  task:'Post. Film the walk. <b>Then edit the four</b> you shot yesterday.',
+      extra:'Fifteen minutes each, timer on. After this the week is finished and your evenings are yours.' },
+    { k:'fri', name:'Friday',    mins:'Nothing',     task:'Nothing today. Buffer, if Thursday did not happen.',
+      extra:'One video is a complete week either way. There are no streaks to break.' },
+    { k:'sat', name:'Saturday',  mins:'',            task:'Off.',
+      extra:'One Saturday a month is a guest shoot.' }
+  ];
+
+  const WEEK = [
+    ['Mon', 'Post. Read the four claims.',        '10 min'],
+    ['Tue', 'Post. Four voice notes.',            '15 min'],
+    ['Wed', 'Shoot four. Do not edit them.',       '90 min'],
+    ['Thu', 'Film the walk, then edit the four.',  '60 min'],
+    ['Fri', 'Nothing. Buffer.',                    '—'],
+    ['Sat', 'Off. Guest shoot once a month.',     '—'],
+    ['Sun', 'Off.',                               '—']
+  ];
+
+  const i = new Date().getDay();            // 0 = Sunday
+  const d = DAYS[i];
+  document.getElementById('t-day').textContent  = d.name;
+  document.getElementById('t-mins').textContent = d.mins;
+  document.getElementById('t-task').innerHTML   = d.task;
+  document.getElementById('t-extra').innerHTML  = d.extra;
+  if (!d.mins) document.getElementById('t-mins').style.display = 'none';
+
+  const todayLabel = DAYS[i].name.slice(0, 3);
+  document.getElementById('week').innerHTML = WEEK.map(([dy, what, tm]) =>
+    `<div class="row${dy === todayLabel ? ' now' : ''}">` +
+    `<span class="dy">${dy}</span><span>${what}</span><span class="tm">${tm}</span></div>`
+  ).join('');
+</script>
